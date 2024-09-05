@@ -2,9 +2,12 @@ package Gun07;
 
 import Utility.BaseDriver;
 import Utility.MyFunc;
+import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
+
+import java.util.List;
 
 //        Senaryo
 //        1- https://www.saucedemo.com/
@@ -64,8 +67,8 @@ public class _01_Soru extends BaseDriver {
         basket.click();
         MyFunc.Wait(2);
 
-        WebElement checkUut = browser.findElement(By.xpath("//button[@id='checkout']"));
-        checkUut.click();
+        WebElement checkOut = browser.findElement(By.xpath("//button[@id='checkout']"));
+        checkOut.click();
         MyFunc.Wait(2);
 
         WebElement firstname = browser.findElement(By.xpath("//input[@id='first-name']"));
@@ -86,9 +89,24 @@ public class _01_Soru extends BaseDriver {
 
 
 
+       List <WebElement> prices = browser.findElements(By.xpath("//div[@class='inventory_item_price']"));
+        double total =0;
+       for (WebElement pr : prices)
+       {
+           System.out.println(pr.getText().replaceAll("[^0-9,.]",""));
+
+           total+= Double.parseDouble(pr.getText().replaceAll("[^0-9,.]",""));
+       }
+
+       WebElement basketPrice = browser.findElement(By.xpath("//div[@class='summary_subtotal_label']"));
+       double totalPrice = Double.parseDouble(basketPrice.getText().replaceAll("[^0-9,.]",""));
+        System.out.println("Total Price " + totalPrice);
+
+        Assert.assertTrue("Totals are not equal" , total == totalPrice);
 
 
-        BekleKapat();
+       BekleKapat();
 
     }
 }
+//div[@class='inventory_item_price' and text()='29.99']

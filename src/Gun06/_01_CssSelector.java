@@ -48,7 +48,7 @@ public class _01_CssSelector extends BaseDriver {
         goodRadio.click();
 
 
-//  //div[@class='inventory_item_price' and text()='29.99']
+
 
 
      BekleKapat();
