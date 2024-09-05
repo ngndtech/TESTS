@@ -58,7 +58,6 @@ public class _04_Soru extends BaseDriver {
 
         birthYear.click();
 
-
         BekleKapat();
     }
 }
